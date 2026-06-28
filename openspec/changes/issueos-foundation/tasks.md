@@ -12,9 +12,9 @@
 
 ## 3. Issue DSL
 
-- [ ] 3.1 在 `src/dsl/` 定义 Issue schema 与 `parseIssue(text, mode)` / `validateIssue(issue)`
-- [ ] 3.2 实现 strict（缺字段报错）与 lenient（缺字段给补充提示）双模式
-- [ ] 3.3 单测覆盖全字段、缺字段、坏格式场景
+- [x] 3.1 在 `src/dsl/` 定义 Issue schema 与 `parseIssue(text, mode)` / `validateIssue(issue)`
+- [x] 3.2 实现 strict（缺字段报错）与 lenient（缺字段给补充提示）双模式
+- [x] 3.3 单测覆盖全字段、缺字段、坏格式场景
 
 ## 4. 存储层
 
