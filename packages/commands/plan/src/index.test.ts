@@ -50,9 +50,12 @@ describe('handlePlanCommand', () => {
     const mockLlm = { generate: vi.fn().mockResolvedValue({ tasks: [{ title: 'T1', summary: 'S1' }, { title: 'T2', summary: 'S2' }, { title: 'T3', summary: 'S3' }] }) };
     const putFn = vi.fn();
     const ctx = makeContext({ repository: { get: vi.fn(), put: putFn, query: vi.fn().mockReturnValue([spec, oldPlan]) } });
-    await handlePlanCommand(ctx, mockLlm as any);
+    const result = await handlePlanCommand(ctx, mockLlm as any);
     expect(putFn).toHaveBeenCalled();
     const superseded = putFn.mock.calls[0][0];
     expect(superseded.status).toBe('superseded');
+    const newPlan = putFn.mock.calls[1][0];
+    expect(superseded.supersededBy).toBe(newPlan.id);
+    expect(result.reply).toContain('✅');
   });
 });

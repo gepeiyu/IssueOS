@@ -77,24 +77,25 @@ export async function handlePlanCommand(
       throw new Error('LLM output has too few tasks');
     }
 
+    const planId = newId();
+
     // Supersede existing Plans for this Spec
     const existingPlans = repository.query(projectId)
       .filter((p: any) => p.specId === spec.id && p.status !== 'superseded');
     for (const oldPlan of existingPlans) {
-      oldPlan.status = 'superseded';
-      oldPlan.supersededBy = newId();
+      oldPlan.status = 'superseded' as const;
+      oldPlan.supersededBy = planId;
       repository.put(oldPlan);
     }
 
-    const planId = newId();
     const plan = {
       id: planId,
       projectId,
       issueId,
       specId: spec.id,
-      status: 'generated',
+      status: 'generated' as const,
       content: JSON.stringify(planData.tasks),
-      provenance: makeProvenance('/plan' as any, spec.id),
+      provenance: makeProvenance('/plan' as const, spec.id),
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
