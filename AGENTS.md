@@ -11,6 +11,9 @@
 | `PORT` | 否 | 监听端口，默认 `3000` |
 | `HOST` | 否 | 监听地址，默认 `localhost` |
 | `CLIENT_SECRET` | 否 | GitHub App 的 Client Secret（OAuth 用） |
+| `ANTHROPIC_API_KEY` | 是 | Anthropic API key（`/spec` 命令用） |
+| `LLM_PROVIDER` | 否 | LLM 提供方（默认 `anthropic`） |
+| `LLM_MODEL` | 否 | Claude 模型名（默认 `claude-sonnet-4-20250514`） |
 
 ## GitHub App 注册步骤
 

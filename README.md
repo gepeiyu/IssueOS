@@ -69,10 +69,10 @@ npm run dev
 
 在 Issue 或 Issue Comment 中以 `/` 开头的命令将被识别：
 
-- `/spec` — 生成 Spec（尚未实现 — MVP）
-- `/plan` — 生成 Plan（尚未实现 — MVP）
-- `/task` — 生成 Task（尚未实现 — MVP）
-- `/review` — 生成 Review（尚未实现 — MVP）
+- `/spec` — 使用 LLM 生成 Spec（需配置 `ANTHROPIC_API_KEY`）
+- `/plan` — 生成 Plan（尚未实现）
+- `/task` — 生成 Task（尚未实现）
+- `/review` — 生成 Review（尚未实现）
 
 未知命令将回复支持的命令列表。
 
@@ -89,6 +89,9 @@ npm run dev
 | `PORT` | 否 | `3000` | 监听端口 |
 | `HOST` | 否 | `localhost` | 监听地址 |
 | `CLIENT_SECRET` | 否 | — | GitHub App 的 Client Secret（OAuth 用） |
+| `ANTHROPIC_API_KEY` | 是 | — | Anthropic API key（`/spec` 命令用） |
+| `LLM_PROVIDER` | 否 | `anthropic` | LLM 提供方 |
+| `LLM_MODEL` | 否 | `claude-sonnet-4-20250514` | Claude 模型名 |
 
 ## 常用脚本
 
