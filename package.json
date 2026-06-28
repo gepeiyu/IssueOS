@@ -6,7 +6,8 @@
     "node": ">=22"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/commands/*"
   ],
   "scripts": {
     "dev": "npm run build --workspaces --if-present",
