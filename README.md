@@ -69,12 +69,12 @@ npm run dev
 
 在 Issue 或 Issue Comment 中以 `/` 开头的命令将被识别：
 
-- `/spec` — 使用 LLM 生成 Spec（需配置 `ANTHROPIC_API_KEY`）
-- `/plan` — 使用 LLM 生成 Plan（需配置 `ANTHROPIC_API_KEY`）
-- `/task` — 生成 Task（尚未实现）
-- `/review` — 生成 Review（尚未实现）
+- `/spec` — 使用 LLM 从 Issue 生成结构化 Spec（goal、scope、acceptance_criteria 等）
+- `/plan` — 从 Spec 生成有序实施计划（3-8 个 Plan Items，含 dependsOn 依赖关系）
+- `/task` — 从 Plan 拆解为 Task DAG（带拓扑排序 + 无环检测，自动去除环依赖）
+- `/review` — 对 PR diff 或产物做 5 维审查（测试/代码规范/安全/性能/架构），输出 Risk Score
 
-未知命令将回复支持的命令列表。
+未知命令将回复支持的命令列表。各命令详情见下方 [命令详解](#命令详解) 章节。
 
 ## 配置
 
@@ -108,6 +108,99 @@ npm run lint        # 运行 ESLint
 
 ## 设计与计划
 
-- 设计文档：`docs/superpowers/specs/2026-06-28-issueos-foundation-design.md`
-- 实施计划：`docs/superpowers/plans/2026-06-28-issueos-foundation.md`
-- OpenSpec 变更：`openspec/changes/issueos-foundation/`
+- 设计文档：`docs/superpowers/specs/`
+- 实施计划：`docs/superpowers/plans/`
+- OpenSpec 变更记录：`openspec/changes/archive/`
+
+## 命令详解
+
+### `/spec`
+
+从 Issue 描述生成结构化 Spec。自动解析 Issue DSL 字段作为降级回退。
+
+**用法：**
+- `/spec` — 自动关联当前 Issue，生成或重新生成 Spec
+- 第一次运行在当前 Issue 上创建 Spec；重复运行产生新版本并标记旧版 superseded
+
+**输出：**
+- Background / Goal / Scope / Out of Scope / Acceptance Criteria / Risk / Rollback
+- Provenance 元数据（Spec ID / Issue ID / 命令 / 时间戳）
+
+**降级：** LLM 失败时回退到 Issue 中预解析的 DSL 字段，标注缺失项。
+
+---
+
+### `/plan`
+
+从 Spec 生成有序实施计划（3-8 个 Plan Items），每个 Item 包含 title、summary、dependsOn。
+
+**用法：**
+- `/plan` — 自动关联当前 Issue 的最新未 superseded Spec
+- `/plan <spec-id>` — 显式指定 Spec ID
+
+**输出：**
+- 表格形式列出 # / Task / Description / Dependencies
+- Provenance 元数据
+
+**降级：** 无 Spec → 提示 `/spec`；Spec 缺少 goal/scope/acceptance_criteria → 提示补充；LLM 失败 → 提示重试。
+
+---
+
+### `/task`
+
+从 Plan 拆解为 Task DAG。每个 Plan Item 拆为 1-3 个 Task（总计 ≤ 20），Task 间带 `dependsOn` 依赖关系。
+
+**用法：**
+- `/task` — 自动关联当前 Issue 的最新未 superseded Plan
+- `/task <plan-id>` — 显式指定 Plan ID
+
+**输出：**
+- Markdown 列表（`- [ ] T1: title — summary (depends: T2)`）
+- 环检测告警：如检测到环形依赖，自动去除成环边并记录告警
+- Provenance 元数据
+
+**降级：** 无 Plan → 提示 `/plan`；Plan Items < 2 → 告警；LLM 失败 → 提示重试。
+
+---
+
+### `/review`
+
+对 PR diff 或产物做 5 维度自动审查，输出 Risk Score。
+
+**用法：**
+- `/review <pr-number>` — 审查指定 PR 的 diff
+- `/review spec-<id>` 或 `plan-<id>` 或 `task-<id>` — 审查产物完整性
+- `/review` — 尝试自动关联 Issue 中引用的 PR
+
+**审查维度与权重：**
+
+| 维度 | 权重 | 评估内容 |
+|------|------|----------|
+| Security | 30% | 密钥泄露？注入？鉴权？输入校验？ |
+| Architecture | 25% | 关注分离？耦合度？设计模式？ |
+| Tests | 20% | 测试覆盖率？有意义的断言？边界情况？ |
+| Code Quality | 15% | 可读性？命名？重复代码？错误处理？ |
+| Performance | 10% | N+1 查询？内存泄露？Payload 大小？ |
+
+**Risk Score：**
+- Low (0-30) — 代码质量较好
+- Medium (31-60) — 部分维度需要改进
+- High (61-100) — 需要重点关注
+
+**输出：**
+- Risk Score + 分档
+- 各维度评分表
+- 各维度详细发现与改进建议
+- 大 diff 自动分文件分块摘要，超 100K 字符标注「未完整评估」
+- **免责声明：** AI 辅助审查，不替代人工 Code Review
+
+**降级：** 无目标 → 提示用法；PR 不存在 → 提示检查 PR 号；LLM 超时 → 部分维度标注「未评估」。
+
+---
+
+### 幂等性
+
+所有 4 条命令支持重复调用：
+- 新结果生成新 ID
+- 同目标的上次结果标记 `superseded`，`supersededBy` 指向新 ID
+- 链路过时（如 Plan superseded 后运行 `/task`）提示更新上游
