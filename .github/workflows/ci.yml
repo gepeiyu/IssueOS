@@ -16,7 +16,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Type check
-        run: for dir in packages/*/; do (cd "$dir" && npx tsc --noEmit); done
+      - name: Build (emit dist/ type declarations)
+        run: for dir in packages/*/; do (cd "$dir" && npx tsc); done
       - name: Test
-        run: NODE_OPTIONS=--experimental-sqlite npm test
+        env:
+          NODE_OPTIONS: --experimental-sqlite
+        run: npm test
