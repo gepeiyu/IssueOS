@@ -2,7 +2,7 @@
 
 - [x] 1.1 初始化项目配置：`package.json`(scripts/type:module)、`tsconfig.json`、ESLint、Prettier、`.gitignore`、`.env.example`
 - [x] 1.2 接入 Vitest 并跑通样板单测；配置 `dev`/`build`/`test`/`typecheck` 脚本
-- [ ] 1.3 新增 GitHub Actions CI（typecheck + test on push/PR）
+- [x] 1.3 新增 GitHub Actions CI（typecheck + test on push/PR）
 
 ## 2. 核心对象模型
 
@@ -35,6 +35,6 @@
 
 ## 6. 本地运行与文档
 
-- [ ] 6.1 提供 `npm run dev` 启动 Probot + Smee.io 转发说明
-- [ ] 6.2 README 增补：GitHub App 注册步骤、环境变量、本地 webhoo tunnel 配置
-- [ ] 6.3 通过 `openspec validate issueos-foundation` 校验 change 完整
+- [x] 6.1 提供 `npm run dev` 启动 Probot + Smee.io 转发说明
+- [x] 6.2 README 增补：GitHub App 注册步骤、环境变量、本地 webhoo tunnel 配置
+- [x] 6.3 通过 `openspec validate issueos-foundation` 校验 change 完整
