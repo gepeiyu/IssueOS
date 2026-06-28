@@ -2,6 +2,7 @@ import type { Probot } from 'probot';
 import { registerSpecCommand } from '@issueos/commands-spec';
 import { registerPlanCommand } from '@issueos/commands-plan';
 import { registerTaskCommand } from '@issueos/commands-task';
+import { registerReviewCommand } from '@issueos/commands-review';
 
 export type Command = '/spec' | '/plan' | '/task' | '/review';
 
@@ -100,6 +101,7 @@ export default function (app: Probot) {
   registerSpecCommand();
   registerPlanCommand();
   registerTaskCommand();
+  registerReviewCommand();
 
   for (const cmd of ALL_COMMANDS) {
     if (!handlers.has(cmd)) {
