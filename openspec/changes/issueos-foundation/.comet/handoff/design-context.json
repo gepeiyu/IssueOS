@@ -1,0 +1,17 @@
+{
+  "change": "issueos-foundation",
+  "phase": "design",
+  "mode": "compact",
+  "canonical_spec": "openspec",
+  "generated_by": "comet-handoff.sh",
+  "context_hash": "b5abfe3100b3b9cd730f1f0b11aa2e7db4e651d62d4cfcf536b4df70f12bf70d",
+  "files": [
+    { "path": "openspec/changes/issueos-foundation/proposal.md", "sha256": "f421dddbfd263a6676cf0a69ffe3d5e1f9b1abdb0ea20b0bbd9c67bc891c3dc7" },
+    { "path": "openspec/changes/issueos-foundation/design.md", "sha256": "a1e5b14b27c66598acb411da007d401bf89c16b4154e8605d156efbcbc8625d3" },
+    { "path": "openspec/changes/issueos-foundation/tasks.md", "sha256": "12f31efd933f2f8df0f997561282798b13d69220a116924f02d09cd7f328478c" },
+    { "path": "openspec/changes/issueos-foundation/specs/github-app/spec.md", "sha256": "0def9cfe7669f7d45453b7ebd3c8231ebc7c9a2768267b53f4cb9f7a7c6a5a21" },
+    { "path": "openspec/changes/issueos-foundation/specs/issue-dsl/spec.md", "sha256": "47477816032acea75150f7e93db5d05f0110b044f33c8c215a54671030156623" },
+    { "path": "openspec/changes/issueos-foundation/specs/object-model/spec.md", "sha256": "665f3091e883b3e460631a60e63d34aea2ec87d5cd3b36a7953df1baf52c41a2" },
+    { "path": "openspec/changes/issueos-foundation/specs/storage/spec.md", "sha256": "a50a63bb65c9ae7159a419886de6446dbed5020b992e94fd92e14f5ea89b49af" }
+  ]
+}
