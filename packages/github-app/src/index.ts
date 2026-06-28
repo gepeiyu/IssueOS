@@ -1,4 +1,5 @@
 import type { Probot } from 'probot';
+import { registerSpecCommand } from '@issueos/commands-spec';
 
 export type Command = '/spec' | '/plan' | '/task' | '/review';
 
@@ -93,6 +94,9 @@ export const ENV_DOCS = `
 const ALL_COMMANDS: Command[] = ['/spec', '/plan', '/task', '/review'];
 
 export default function (app: Probot) {
+  // Register real command handlers before placeholder fallback
+  registerSpecCommand();
+
   for (const cmd of ALL_COMMANDS) {
     if (!handlers.has(cmd)) {
       registerCommand({

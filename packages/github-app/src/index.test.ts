@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import {
   parseCommand,
   isAllowedRepo,
@@ -175,6 +175,11 @@ describe('requireEnv', () => {
 describe('Probot app factory', () => {
   beforeEach(() => {
     getRegisteredCommands().clear();
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+  });
+
+  afterEach(() => {
+    delete process.env.ANTHROPIC_API_KEY;
   });
 
   it('registers placeholder handlers and calls app.on', () => {
