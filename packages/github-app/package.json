@@ -16,6 +16,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@issueos/commands-plan": "*",
     "@issueos/commands-spec": "*",
     "@issueos/domain": "*",
     "@issueos/issue-dsl": "*",

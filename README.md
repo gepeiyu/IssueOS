@@ -70,7 +70,7 @@ npm run dev
 在 Issue 或 Issue Comment 中以 `/` 开头的命令将被识别：
 
 - `/spec` — 使用 LLM 生成 Spec（需配置 `ANTHROPIC_API_KEY`）
-- `/plan` — 生成 Plan（尚未实现）
+- `/plan` — 使用 LLM 生成 Plan（需配置 `ANTHROPIC_API_KEY`）
 - `/task` — 生成 Task（尚未实现）
 - `/review` — 生成 Review（尚未实现）
 

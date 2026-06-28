@@ -11,6 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@issueos/github-app': path.resolve(__dirname, 'packages/github-app/src/index.ts'),
+      '@issueos/commands-plan': path.resolve(__dirname, 'packages/commands/plan/src/index.ts'),
     },
   },
 });
