@@ -5,18 +5,29 @@
 - build_mode: subagent-driven-development
 - tdd_mode: direct
 
-## 当前 task（milestone 1：顶层骨架 + domain）
+## 已完成
 
-- plan ref: 阶段 A 任务1 + 阶段 B 任务2
-- OpenSpec tasks 映射: 1.1, 1.2, 1.3, 2.1, 2.2, 2.3
+### M1 (skeleton + domain)
+- ✔ 1.1 项目配置 ，1.2 Vitest ；1.3 CI（待 M5）
+- ✔ 2.1 对象类型，2.2 关系指针，2.3 单测
+- 提交: 562106e, 2bea619
+
+### M2 (issue-dsl)
+- ✔ 3.1 Issue schema + parseIssue，3.2 strict/lenient，3.3 单测
+- 提交: 923368f
+
+### M3 (storage)
+- ✔ 4.1 Repository 接口，4.2 InMemory，4.3 Sqlite，4.4 单测
+- 提交: 6c976f1
+
+## 当前 task（M4：github-app + app）
+
+- OpenSpec tasks: 5.1–5.7
 - 阶段: implementing
-- 派发：第 1 个 implementer
+- 派发：第 4 个 implementer
 - 提交/证据：待回报
 
-## 剩余里程碑
+## 未完成里程碑
 
-- M2: issue-dsl 包（3.1/3.2/3.3）
-- M3: storage 包（4.1/4.2/4.3/4.4）
-- M4: github-app + app（5.1–5.7）
-- M5: CI + 文档（6.1/6.2/6.3）
-- final-review: 推进后派发一次轻量 code reviewer
+- M5: CI + 文档（6.1–6.3）
+- final-review: 所有 task 完成后派发一次轻量 code reviewer
