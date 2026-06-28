@@ -18,10 +18,10 @@
 
 ## 4. 存储层
 
-- [ ] 4.1 定义同步 `Repository<T>` 接口（`get/put/query(byProject)`）
-- [ ] 4.2 实现 `InMemoryRepository`
-- [ ] 4.3 提供 `SqliteRepository` 适配位（接口齐全、基础 get/put/query 可跑）
-- [ ] 4.4 单测覆盖内存实现与 SQLite 基础往返
+- [x] 4.1 定义同步 `Repository<T>` 接口（`get/put/query(byProject)`）
+- [x] 4.2 实现 `InMemoryRepository`
+- [x] 4.3 提供 `SqliteRepository` 适配位（接口齐全、基础 get/put/query 可跑）
+- [x] 4.4 单测覆盖内存实现与 SQLite 基础往返
 
 ## 5. GitHub App 与命令路由
 
