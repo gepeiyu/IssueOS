@@ -2,6 +2,8 @@
 comet_change: issueos-foundation
 role: technical-design
 canonical_spec: openspec
+archived-with: 2026-06-28-issueos-foundation
+status: final
 ---
 
 # Design Doc — IssueOS 基座（issueos-foundation）

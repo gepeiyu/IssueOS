@@ -2,6 +2,7 @@
 change: issueos-foundation
 design-doc: docs/superpowers/specs/2026-06-28-issueos-foundation-design.md
 base-ref: 59becbd9d359272aa0f4646bac4272436966d671
+archived-with: 2026-06-28-issueos-foundation
 ---
 
 # Implementation Plan — issueos-foundation
