@@ -1,5 +1,9 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, afterEach } from 'vitest';
 import { AnthropicLlmClient, createLlmClient } from './index.js';
+
+afterEach(() => {
+  vi.unstubAllEnvs();
+});
 
 describe('AnthropicLlmClient', () => {
   it('should return structured JSON on successful generation', async () => {
@@ -32,7 +36,7 @@ describe('AnthropicLlmClient', () => {
   });
 
   it('createLlmClient returns AnthropicLlmClient by default', () => {
-    process.env.ANTHROPIC_API_KEY = 'sk-test';
+    vi.stubEnv('ANTHROPIC_API_KEY', 'sk-test');
     const client = createLlmClient();
     expect(client).toBeInstanceOf(AnthropicLlmClient);
   });

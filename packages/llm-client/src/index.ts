@@ -1,5 +1,4 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { z } from 'zod';
 
 export interface LlmMessage {
   role: 'system' | 'user' | 'assistant';
@@ -15,7 +14,7 @@ export interface LlmConfig {
 export interface LlmClient {
   generate(
     messages: LlmMessage[],
-    schema?: Record<string, unknown>,
+    schema: Record<string, unknown>,
   ): Promise<Record<string, unknown>>;
 }
 
@@ -44,7 +43,7 @@ export class AnthropicLlmClient implements LlmClient {
 
   async generate(
     messages: LlmMessage[],
-    schema?: Record<string, unknown>,
+    schema: Record<string, unknown>,
   ): Promise<Record<string, unknown>> {
     const systemMsg = messages.find(m => m.role === 'system')?.content;
     const nonSystem = messages.filter(m => m.role !== 'system').map(m => ({
