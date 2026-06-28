@@ -1,14 +1,14 @@
 ## 1. 项目骨架
 
-- [ ] 1.1 初始化项目配置：`package.json`(scripts/type:module)、`tsconfig.json`、ESLint、Prettier、`.gitignore`、`.env.example`
-- [ ] 1.2 接入 Vitest 并跑通样板单测；配置 `dev`/`build`/`test`/`typecheck` 脚本
+- [x] 1.1 初始化项目配置：`package.json`(scripts/type:module)、`tsconfig.json`、ESLint、Prettier、`.gitignore`、`.env.example`
+- [x] 1.2 接入 Vitest 并跑通样板单测；配置 `dev`/`build`/`test`/`typecheck` 脚本
 - [ ] 1.3 新增 GitHub Actions CI（typecheck + test on push/PR）
 
 ## 2. 核心对象模型
 
-- [ ] 2.1 在 `src/domain/` 定义 `Project/Issue/Spec/Plan/Task/Agent/Review/Knowledge` 类型与状态枚举
-- [ ] 2.2 为每类对象定义 `id/projectId/createdAt/updatedAt/provenance` 及关系指针（`Plan.specId`、`Task.planId`、`Review.target*`）
-- [ ] 2.3 单测覆盖对象关系与状态枚举的类型约束
+- [x] 2.1 在 `src/domain/` 定义 `Project/Issue/Spec/Plan/Task/Agent/Review/Knowledge` 类型与状态枚举
+- [x] 2.2 为每类对象定义 `id/projectId/createdAt/updatedAt/provenance` 及关系指针（`Plan.specId`、`Task.planId`、`Review.target*`）
+- [x] 2.3 单测覆盖对象关系与状态枚举的类型约束
 
 ## 3. Issue DSL
 
