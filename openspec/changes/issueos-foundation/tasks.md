@@ -25,13 +25,13 @@
 
 ## 5. GitHub App 与命令路由
 
-- [ ] 5.1 接入 Probot，配置 `issue_comment`/`issues` 监听与签名校验
-- [ ] 5.2 实现 Webhook 签名校验，失败返回 401 且不派发
-- [ ] 5.3 实现命令路由：识别 `/spec` `/plan` `/task` `/review` 首词；未知命令回复帮助
-- [ ] 5.4 实现占位 handler：识别到的命令回「尚未实现」并记录为 markdown 占位回复
-- [ ] 5.5 实现鉴权：仓库 allow-list 校验，越权 403
-- [ ] 5.6 配置 fail-fast 启动校验（`APP_ID`/`PRIVATE_KEY` 缺失即退出并提示变量名）
-- [ ] 5.7 集成测试：使用伪造 webhook payload 覆盖签名、鉴权、路由分发
+- [x] 5.1 接入 Probot，配置 `issue_comment`/`issues` 监听与签名校验
+- [x] 5.2 实现 Webhook 签名校验，失败返回 401 且不派发
+- [x] 5.3 实现命令路由：识别 `/spec` `/plan` `/task` `/review` 首词；未知命令回复帮助
+- [x] 5.4 实现占位 handler：识别到的命令回「尚未实现」并记录为 markdown 占位回复
+- [x] 5.5 实现鉴权：仓库 allow-list 校验，越权 403
+- [x] 5.6 配置 fail-fast 启动校验（`APP_ID`/`PRIVATE_KEY` 缺失即退出并提示变量名）
+- [x] 5.7 集成测试：使用伪造 webhook payload 覆盖签名、鉴权、路由分发
 
 ## 6. 本地运行与文档
 
